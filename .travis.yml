@@ -14,8 +14,8 @@ script:
   #- docker build --build-arg PLATFORM=linux-arm -t raymondmm/sonweb:linux-arm -f Dockerfile.linux-arm .
 
   - >
-  echo $TRAVIS_TAG
-    if [ -n "$TRAVIS_TAG" ]; then
+  #echo $TRAVIS_TAG
+  #  if [ -n "$TRAVIS_TAG" ]; then
       # Push all images
       travis_retry timeout 5m docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
       docker tag raymondmm/sonweb:linux-amd64 raymondmm/sonweb:${TRAVIS_TAG}-linux-amd64
@@ -34,4 +34,4 @@ script:
       #./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "raymondmm/sonweb:${TRAVIS_TAG}-OS-ARCH" --target "raymondmm/sonweb:latest"
       ./manifest-tool push from-args --platforms linux/amd64 --template "raymondmm/sonweb:${TRAVIS_TAG}-OS-ARCH" --target "raymondmm/sonweb:$TRAVIS_TAG"
       ./manifest-tool push from-args --platforms linux/amd64 --template "raymondmm/sonweb:${TRAVIS_TAG}-OS-ARCH" --target "raymondmm/sonweb:latest"
-    fi
+  #  fi
