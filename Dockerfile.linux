@@ -1,0 +1,46 @@
+FROM raymondmm/rpi-alpine
+
+MAINTAINER Raymond Mouthaan <raymondmmouthaan@gmail.com>
+LABEL Description="This image is used to start SonWEB which is a administrative Website for Devices flashed with Sonoff-Tasmota."
+
+ENV SONWEB_VERSION 2018-02-22
+
+# Add basics
+RUN apk update && apk upgrade && apk add --no-cache \
+  apache2 php7 php7-apache2 git curl nano
+
+# Add modules
+RUN apk add \
+  php7-json \
+  php7-session \
+  php7-zip \
+  php7-curl
+
+RUN cp /usr/bin/php7 /usr/bin/php && rm -f /var/cache/apk/*
+
+# Add apache to run and configure
+RUN mkdir /run/apache2 \
+    && sed -i "s/#LoadModule\ rewrite_module/LoadModule\ rewrite_module/" /etc/apache2/httpd.conf \
+    && sed -i "s/#LoadModule\ session_module/LoadModule\ session_module/" /etc/apache2/httpd.conf \
+    && sed -i "s/#LoadModule\ session_cookie_module/LoadModule\ session_cookie_module/" /etc/apache2/httpd.conf \
+    && sed -i "s/#LoadModule\ session_crypto_module/LoadModule\ session_crypto_module/" /etc/apache2/httpd.conf \
+    && sed -i "s/#LoadModule\ deflate_module/LoadModule\ deflate_module/" /etc/apache2/httpd.conf \
+    && sed -i "s#^DocumentRoot \".*#DocumentRoot \"/app/sonweb\"#g" /etc/apache2/httpd.conf \
+    && sed -i "s#/var/www/localhost/htdocs#/app/sonweb#" /etc/apache2/httpd.conf \
+    && printf "\n<Directory \"/app/sonweb\">\n\tAllowOverride All\n</Directory>\n" >> /etc/apache2/httpd.conf
+
+# Clone Sonweb from github
+RUN git clone https://github.com/reloxx13/SonWEB.git /app/sonweb
+RUN chown -R apache:apache /app && chmod -R 755 /app && mkdir bootstrap
+
+# Copy start.sh and make executable
+ADD start.sh /bootstrap/
+RUN chmod +x /bootstrap/start.sh
+
+# Create a symlink to Sonweb data directory
+RUN ln -s /app/sonweb/data /data
+VOLUME /data
+
+EXPOSE 80
+
+CMD ["/bootstrap/start.sh"]
