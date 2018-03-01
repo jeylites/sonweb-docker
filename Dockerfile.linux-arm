@@ -1,4 +1,5 @@
 FROM arm32v6/alpine
+COPY tmp/qemu-arm-static /usr/bin/qemu-arm-static
 
 MAINTAINER Raymond Mouthaan <raymondmmouthaan@gmail.com>
 LABEL Description="This image is used to start SonWEB which is a administrative Website for Devices flashed with Sonoff-Tasmota."
