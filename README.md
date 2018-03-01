@@ -3,7 +3,7 @@ sonweb-docker
 [![Build Status](https://travis-ci.org/RaymondMouthaan/sonweb-docker.svg?branch=master)](https://travis-ci.org/RaymondMouthaan/sonweb-docker)
 [![This image on DockerHub](https://img.shields.io/docker/pulls/raymondmm/sonweb.svg)](https://hub.docker.com/r/raymondmm/sonweb/)
 
-A Docker image for SonWeb. [SonWEB](https://github.com/reloxx13/SonWEB) is a administrative Website for Devices flashed with [Sonoff-Tasmota](https://github.com/arendst/Sonoff-Tasmota).
+A Docker image for SonWeb. [SonWEB](https://github.com/reloxx13/SonWEB) is an administrative Website for Devices flashed with [Sonoff-Tasmota](https://github.com/arendst/Sonoff-Tasmota).
 
 This image is based on **Alpine** with Apache2 and PHP7 installed and supports the following architecture:
   - arm   (i.e. Raspberry PI3)
