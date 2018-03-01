@@ -1,9 +1,9 @@
-FROM raymondmm/rpi-alpine
+FROM arm32v6/alpine
 
 MAINTAINER Raymond Mouthaan <raymondmmouthaan@gmail.com>
 LABEL Description="This image is used to start SonWEB which is a administrative Website for Devices flashed with Sonoff-Tasmota."
 
-ENV SONWEB_VERSION 2018-02-22
+ENV SONWEB_VERSION 2018-02-27
 
 # Add basics
 RUN apk update && apk upgrade && apk add --no-cache \
