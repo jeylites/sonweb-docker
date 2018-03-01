@@ -4,7 +4,6 @@ services:
  - docker
 
 script:
-  #- ./cross.sh
 
   # Update docker for multi-stage build
   - sudo service docker stop
