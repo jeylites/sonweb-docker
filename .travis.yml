@@ -11,8 +11,8 @@ script:
   - curl -fsSL https://get.docker.com/ | sudo sh
 
   # Build all images
-  - docker build --build-arg PLATFORM=linux-amd64 -t raymondmm/sonweb:linux-amd64 -f Dockerfile.linux .
-  - docker build --build-arg PLATFORM=linux-arm -t raymondmm/sonweb:linux-arm -f Dockerfile.linux .
+  - docker build --build-arg PLATFORM=linux-amd64 -t raymondmm/sonweb:linux-amd64 -f Dockerfile.linux-amd64 .
+  - docker build --build-arg PLATFORM=linux-arm -t raymondmm/sonweb:linux-arm -f Dockerfile.linux-arm .
 
   - >
     if [ -n "$TRAVIS_TAG" ]; then
