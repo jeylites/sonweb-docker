@@ -30,7 +30,7 @@ docker run                  - run this container... and build locally if necessa
       raymondmm/sonweb      - the image to base it on
 ```
 
-## Persistent (highly recommended)
+### Persistent (highly recommended)
 It's __highly recommended__ to use the volume option to persist/store your Sonweb config outside the container.
 
 ```
