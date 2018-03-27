@@ -39,6 +39,7 @@ ADD start.sh /bootstrap/
 RUN chmod +x /bootstrap/start.sh
 
 # Create a symlink to Sonweb data directory
+RUN chown -R apache:apache /app/sonweb/data
 RUN ln -s /app/sonweb/data /data
 RUN chown -R apache:apache /data
 VOLUME /data
