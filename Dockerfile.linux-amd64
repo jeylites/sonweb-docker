@@ -39,6 +39,7 @@ RUN chmod +x /bootstrap/start.sh
 
 # Create a symlink to Sonweb data directory
 RUN ln -s /app/sonweb/data /data
+RUN chown -R apache:apache /data
 VOLUME /data
 
 EXPOSE 80
