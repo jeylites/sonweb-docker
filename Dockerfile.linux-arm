@@ -4,7 +4,7 @@ COPY tmp/qemu-arm-static /usr/bin/qemu-arm-static
 MAINTAINER Raymond Mouthaan <raymondmmouthaan@gmail.com>
 LABEL Description="This image is used to start SonWEB which is a administrative Website for Devices flashed with Sonoff-Tasmota."
 
-ENV SONWEB_VERSION 2018-02-27
+ENV SONWEB_VERSION 2018-03-25
 
 # Add basics
 RUN apk update && apk upgrade && apk add --no-cache \
@@ -40,6 +40,7 @@ RUN chmod +x /bootstrap/start.sh
 
 # Create a symlink to Sonweb data directory
 RUN ln -s /app/sonweb/data /data
+RUN chown -R apache:apache /data
 VOLUME /data
 
 EXPOSE 80
