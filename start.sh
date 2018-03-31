@@ -93,7 +93,7 @@ if [ ! -d /data/updates ]; then
 fi
 
 # Set apache owner
-chown -R apache:apache /data
+chown -R apache:apache /app/sonweb/data
 
 echo "Starting apache..."
 httpd -D FOREGROUND
