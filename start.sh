@@ -83,16 +83,17 @@ rm -f /run/apache2/httpd.pid
 # Create /data/firmware if it does not exists
 if [ ! -d /data/firmwares ]; then
     mkdir -p /data/firmwares -m 777
-    chown apache:apache /data/firmwares
     echo "/data/firmwares created."
 fi
 
 # Create /data/updates if it does not exists
 if [ ! -d /data/updates ]; then
     mkdir /data/updates -m 777
-    chown apache:apache /data/updates
     echo "/data/updates created."
 fi
+
+# Set apache owner
+chown -R apache:apache /data
 
 echo "Starting apache..."
 httpd -D FOREGROUND
